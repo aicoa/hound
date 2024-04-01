@@ -8,17 +8,18 @@ type Pair struct {
 	Value int
 }
 
-func RemoveElement(arr []string, ele string) (newArr []string) {
-	for _, v := range arr {
-		if v != ele {
-			newArr = append(newArr, v)
+//字符串数组中移除特定的元素
+func RemoveStringFromArray(slice []string, stringToRemove string) (newSlice []string) {
+	for _, item := range slice {
+		if item != stringToRemove {
+			newSlice = append(newSlice, item)
 		}
 	}
-	return newArr
+	return newSlice
 }
 
 //泛型数组去重
-func RemoveDuplicates[T comparable](arr []T) []T {
+func RemoveDuplicateElements[T comparable](arr []T) []T {
 	encountered := map[T]bool{}
 	result := []T{}
 	for _, v := range arr {

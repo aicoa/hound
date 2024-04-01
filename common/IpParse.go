@@ -19,7 +19,7 @@ func ParseIPs(ipString string) (ips []string) {
 		}
 	}
 	for _, excludedIP := range excludedIPs {
-		ips = util.RemoveElement(ips, excludedIP)
+		ips = util.RemoveStringFromArray(ips, excludedIP)
 	}
 	return ips
 }

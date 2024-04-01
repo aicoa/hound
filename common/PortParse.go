@@ -38,6 +38,6 @@ func PasrPort(ports string) (scanPorts []int, err error) {
 			scanPorts = append(scanPorts, i)
 		}
 	}
-	scanPorts = util.RemoveDuplicates[int](scanPorts)
+	scanPorts = util.RemoveDuplicateElements[int](scanPorts)
 	return scanPorts, nil
 }

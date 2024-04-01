@@ -7,8 +7,8 @@ import (
 )
 
 var (
-	ReverseCeyeApiKey = "ba446c3277a60555ad9e74a6f0cb4290"
-	ReverseCeyeDomain = "xrn0nb.ceye.io" //github上随意找
+	ReverseCeyeApiKey = "c415e810bf78d221067af6c486a6366c"
+	ReverseCeyeDomain = "fpg6a1.ceye.io" //用自己的Ceye相关api即可
 
 	ReverseCeyeLive bool
 )
@@ -109,7 +109,7 @@ func (this *Options) CheckPocsKeyWord(id string) bool {
 }
 
 // 风险等级筛选功能部分
-func (this *Options) SetServerityKeyword(id string) bool {
+func (this *Options) SetServerityKeyword() bool {
 	if len(this.Severity) > 0 {
 		arr := strings.Split(this.Severity, ",")
 		if len(arr) >= 1 {
@@ -135,7 +135,7 @@ func (this *Options) CheckPocsServerityKeyWord(serverity string) bool {
 // 对poc中的关键字进行筛选，搜索关键字筛选
 func (this *Options) FilterPocServeritySearch(pocId, serverity string) bool {
 	var isShowed bool
-	if len(this.Search) > 0 && this.SetSearchKeyword() && len(o.serverity) > 0 && this.SetServerityKeyword() {
+	if len(this.Search) > 0 && this.SetSearchKeyword() && len(this.Severity) > 0 && this.SetServerityKeyword() {
 		isShowed = true
 	} else if len(this.Severity) > 0 && this.SetServerityKeyword() {
 		if this.CheckPocsServerityKeyWord(serverity) {
@@ -155,7 +155,7 @@ func (this *Options) ReversePocs(allpocs []poc.Poc) ([]poc.Poc, []poc.Poc) {
 	other := []poc.Poc{}
 	for _, v := range allpocs {
 		flag := false
-		for _, item := range poc.Set {
+		for _, item := range v.Set {
 			key := item.Key.(string)
 			if strings.EqualFold(key, "reverse") {
 				flag = true
